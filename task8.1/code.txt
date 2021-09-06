@@ -1,0 +1,52 @@
+
+def main():
+    a = input('Введите значение a: ')
+    if validate_param(a) == 'False':
+        print ("a - not a number")
+        return "error"
+    b = input('Введите значение b: ')
+    if validate_param(b) == 'False':
+        print("b - not a number")
+        return "error"
+    c = input('Введите значение c: ')
+    if validate_param(a) == 'False':
+        print("c - not a number")
+        return "error"
+    d = discriminant(a,b,c)
+    result = roots(d,a,b,c)
+    square_print(a,b,c,result)
+
+def validate_param(param):
+    try:
+        int(param)
+        return True
+    except ValueError:
+        return False
+
+def discriminant(a,b,c):
+    a = float(a)
+    b = float(b)
+    c = float(c)
+    discriminant = b ** 2 - 4 * a * c
+    return discriminant
+
+def roots (d,a,b,c):
+    if discriminant < 0:
+        print('Isn\'t any result')
+        return -1
+    elif discriminant == 0:
+        x = -b / (2 * a)
+        print('x = ' + str(x))
+        return x
+    else:
+        x1 = (-b + discriminant ** 0.5) / (2 * a)
+        x2 = (-b - discriminant ** 0.5) / (2 * a)
+        return x1, x2
+
+def square_print(a,b,c,roots):
+    print ('for, ' + a + ',' + b + ',' + c + ',')
+    print('x1 = ' + str(roots[0]))
+    print('x2 = ' + str(roots[1]))
+    return roots
+
+main()
